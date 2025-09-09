@@ -1,3 +1,14 @@
+import os
+import streamlit as st
+from supabase import create_client
+
+SUPABASE_URL = st.secrets.get("SUPABASE_URL", os.getenv("SUPABASE_URL"))
+SUPABASE_KEY = st.secrets.get("SUPABASE_KEY", os.getenv("SUPABASE_KEY"))
+
+sb = None
+if SUPABASE_URL and SUPABASE_KEY:
+    sb = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 # App: Gastos en Pareja — Streamlit (100% Python)
 # Autor: HÈTORj
 
@@ -301,3 +312,4 @@ else:
             st.warning(a)
     else:
         st.success("Sin fugas evidentes en el período.")
+
